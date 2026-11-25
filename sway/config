@@ -1,0 +1,119 @@
+################
+# sway config  #
+################
+
+# Messagese
+exec dunst
+
+# floating mode
+floating_modifier Super normal
+bindsym --to-code Super+s floating toggle
+
+# Applications
+bindsym --to-code Super+Return exec foot
+bindsym --to-code Super+d exec fuzzel
+bindsym --to-code Super+q exec firefox
+bindsym --to-code Super+e exec thunar
+bindsym --to-code Super+g exec foot nvim
+bindsym --to-code Super+r exec Telegram
+
+# Navigation
+bindsym --to-code Super+Alt+z exec loginctl poweroff
+bindsym --to-code Super+Alt+x exec loginctl reboot
+bindsym --to-code Super+w kill
+bindsym --to-code Super+Alt+r reload
+bindsym --to-code Super+Alt+q exit
+bindsym --to-code Super+f fullscreen toggle
+
+# Touchpad
+input "type:touchpad" {
+    dwt enabled
+    tap enabled
+}
+
+# Modes
+bindsym --to-code Super+t layout stacking
+bindsym --to-code Super+y layout tabbed
+bindsym --to-code Super+u layout toggle split
+
+# Layout
+input type:keyboard {
+    xkb_layout us,ru
+    xkb_options grp:win_space_toggle
+}
+
+# Workspaces
+bindsym --to-code Super+1 workspace number 1
+bindsym --to-code Super+2 workspace number 2
+bindsym --to-code Super+3 workspace number 3
+bindsym --to-code Super+4 workspace number 4
+bindsym --to-code Super+5 workspace number 5
+bindsym --to-code Super+6 workspace number 6
+bindsym --to-code Super+7 workspace number 7
+bindsym --to-code Super+8 workspace number 8
+bindsym --to-code Super+9 workspace number 9
+bindsym --to-code Super+0 workspace number 10
+bindsym --to-code Super+Shift+1 move container to workspace number 1
+bindsym --to-code Super+Shift+2 move container to workspace number 2
+bindsym --to-code Super+Shift+3 move container to workspace number 3
+bindsym --to-code Super+Shift+4 move container to workspace number 4
+bindsym --to-code Super+Shift+5 move container to workspace number 5
+bindsym --to-code Super+Shift+6 move container to workspace number 6
+bindsym --to-code Super+Shift+7 move container to workspace number 7
+bindsym --to-code Super+Shift+8 move container to workspace number 8
+bindsym --to-code Super+Shift+9 move container to workspace number 9
+bindsym --to-code Super+Shift+0 move container to workspace number 10
+
+# Windows
+default_border pixel 1
+default_floating_border pixel 1
+gaps inner 6
+gaps outer 0
+client.focused          #5e81ac #0a0e14 #d8dee9 #81a1c1   #5e81ac
+client.focused_inactive #2e3440 #0a0e14 #d8dee9 #4c566a   #2e3440
+client.unfocused        #1e222a #0a0e14 #7a828e #2e3440   #1e222a
+client.urgent           #bf616a #0a0e14 #eceff4 #bf616a   #bf616a
+for_window [app_id="foot"] border pixel 3
+
+# Windows navigation 
+bindsym --to-code Super+Shift+h move left
+bindsym --to-code Super+Shift+j move down 
+bindsym --to-code Super+Shift+k move up
+bindsym --to-code Super+Shift+l move right
+bindsym --to-code Super+b splith
+bindsym --to-code Super+v splitv
+bindsym --to-code Super+h focus left
+bindsym Super+j focus down
+bindsym Super+k focus up
+bindsym Super+l focus right
+bindsym Super+Left focus left
+bindsym Super+Down focus down
+bindsym Super+Up focus up
+bindsym Super+Right focus right
+
+# Waybar
+exec_always sh -c 'pkill waybar; sleep 0.1; waybar'
+
+# Wallpaper
+#~ exec /home/timoti/.config/Wallpaper/change_wallpaper.sh
+#~ bindsym --to-code Super+c exec /home/timoti/.config/Wallpaper/change_wallpaper.sh
+
+exec swaybg -i /home/timoti/Pictures/Wallpapers/wallhaven-ogyeol_1920x1080.png
+
+# Volume
+exec pipewire
+bindsym --locked XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+bindsym --locked XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindsym --locked XF86AudioPlay exec playerctl play-pause
+bindsym --locked XF86AudioPause exec playerctl play-pause
+bindsym --locked XF86AudioPrev exec playerctl previous
+bindsym --locked XF86AudioNext exec playerctl next
+bindsym --locked XF86AudioStop exec playerctl stop
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+
+# Screenshot
+bindsym Print exec grim -g "$(slurp)" - | satty --filename -
+bindsym Shift+Print exec grim - | satty --filename -
